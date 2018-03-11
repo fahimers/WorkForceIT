@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param> <!--En servlet är basen för all webbprogrammering i Java. Servletten tar nämligen emot HTTP-förfrågningar och returnerar svar på dessa till klienten. -->
+        <!-- web.xml tolkas för att ta reda på vilka regler som gäller för web-behållaren -->
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name> <!-- Ger ett namn till servlets  -->
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup> <!-- Om man sätter load-on-startup i servlet-märket i web.xml laddas servleten redan då servern startas, init() körs också. -->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern> <!-- Mappar servlets till denna adress-->
+    </servlet-mapping>
+    <session-config>
+        <session-timeout> <!-- Detta beskriver hur länge en användare kan spara sin session när han är inaktive 30 min -->
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>faces/logReg.xhtml</welcome-file>
+    </welcome-file-list>
+</web-app>

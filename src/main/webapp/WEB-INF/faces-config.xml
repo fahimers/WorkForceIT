@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+    <application> <!-- Internationlization -->
+    <locale-config>
+        <default-locale>en</default-locale>         <!--Startar som engelska ändras sen  -->
+        <supported-locale>fr</supported-locale>
+         <supported-locale>it</supported-locale>
+    </locale-config> 
+    <resource-bundle> <!-- gör så att detta laddas globat så att man behöver inte använda sig utav f:loadbundle och kan nås i alla filer-->
+        <base-name>com.eng</base-name> <!-- används för properties (sparas där) -->
+        <var>msg</var> <!-- Används för internationlization -->
+    </resource-bundle>
+    </application>
+    <navigation-rule> <!-- bara hur flödet ser ut på programmet -->
+        <from-view-id>/logReg.xhtml</from-view-id>
+        <navigation-case>
+            <if>#{acct.succ}</if>
+            <to-view-id>/client.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/logReg.xhtml</from-view-id>
+        <navigation-case>
+            <if>#{acct.admin}</if>
+            <to-view-id>/admin.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/client.xhtml</from-view-id>
+        <navigation-case>
+            <if>#{acct.logout}</if>
+            <to-view-id>/logReg.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+      <navigation-rule>
+        <from-view-id>/admin.xhtml</from-view-id>
+        <navigation-case>
+            <if>#{acct.logout}</if>
+            <to-view-id>/logReg.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>

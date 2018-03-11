@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <style>  .ferra{
+                background-image:url("res/b1.jpg");
+                 }
+        </style>
+        <title>Hi and welcome </title>
+        <link rel="stylesheet" type="text/css" href="style.css"></link> <!-- CSS som jag valt att använda -->
+    </h:head>
+    <h:body styleClass="ferra"> <!-- bilden b1 ska vara background för hela body -->
+        <ul class="nav">
+            <input type="text" name="search" placeholder="Search.."> </input> <!-- Ingen funktionalitet -->
+           <li><a href="#">Log in</a></li>
+           <li><a href="#">Register</a></li>
+           <li><a href="#">About</a></li>
+           
+        <h:form> <!-- Internationalization  -->
+             <h:panelGrid columns="2"> 
+         Language : 
+         <h:selectOneMenu value="#{userData.locale}" onchange="submit()"
+            valueChangeListener="#{userData.localeChanged}"> <!-- anropar funktionen -->
+            <f:selectItems value="#{userData.countries}" />  <!-- väljer land utifrån-->
+         </h:selectOneMenu> 
+      </h:panelGrid> 
+        </h:form>     
+        </ul>
+        <h:outputLabel value="#{acct.init()}"/>
+        <h:form>
+            <h3>Log in</h3>
+            <p>              
+                 <h:outputText value="#{msg['username']}" />
+                <h:inputText id ="username" value="#{acct.username}"/>
+            <h:outputText value="#{msg['password']}" />
+                <h:inputSecret  id ="password" value="#{acct.password}"/>               
+            </p>
+            <p>
+                <h:commandButton value ="Log in" action ="#{acct.login()}"/>
+            </p>
+            <hr/>
+        </h:form>
+        <h:form>
+      <h3><h:outputText value="#{msg['greeting']}" /></h3>   
+   </h:form>
+        <h:form>
+            <h3><h:outputText value="#{msg['newAccount']}"/></h3>
+        
+                <h:panelGrid columns="1">
+                  <h:outputText value="#{msg['username']}" />
+                  <h:inputText id ="username" value="#{acct.username}" required="true" requiredMessage="Please enter Username">                    
+                </h:inputText>
+                  <h:message for="username" errorStyle="color:red; display:block"/>        
+                <h:outputText value="#{msg['password']}" />
+                <h:inputSecret id ="password" value="#{acct.password}" required="true" requiredMessage="Please enter password">
+                </h:inputSecret>
+                <h:message for="password" errorStyle="color:red; display:block"/> 
+                 <h:outputText value="#{msg['name']}" />
+                <h:inputText id ="name" value="#{acct.name}" required="true" requiredMessage="Please enter name" >
+                </h:inputText>
+                  <h:message for="name" errorStyle="color:red; display:block"/> 
+               <h:outputText value="#{msg['surname']}" />
+               <h:inputText id ="surname" value="#{acct.surname}" required="true" requiredMessage="Please enter sirname">
+               </h:inputText>
+               <h:message for="surname" errorStyle="color:red; display:block"/> 
+                   <h:outputText value="#{msg['ssn']}" />
+                <h:inputText id ="ssn" value="#{acct.ssn}" required="true" requiredMessage="Please enter ssn">
+                </h:inputText>
+                <h:message for="ssn" errorStyle="color:red; display:block"/> 
+             <h:outputText value="#{msg['email']}" />
+                <h:inputText id ="email" value="#{acct.email}" required="true" requiredMessage="Please enter email">
+                </h:inputText>
+                <h:message for="email" errorStyle="color:red; display:block"/> 
+                </h:panelGrid>
+           
+            <script> 
+                
+            </script>
+            <p>
+                <h:commandButton value ="new Account" action ="#{acct.newAccount()}"/>
+            </p>
+            <p>
+                <h:outputText id="res" value="#{acct.result}"/> 
+               
+            </p>
+        </h:form>       
+      
+    </h:body>
+</html>

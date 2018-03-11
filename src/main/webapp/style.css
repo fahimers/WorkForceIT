@@ -1,0 +1,34 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2018-mar-03, 06:03:08
+    Author     : fahimer
+*/
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', serif;
+}
+.nav{
+    background-color: #595959;
+    color: #ffffff;
+    list-style: none;
+    text-align: right;
+    padding: 20px 0 20px 0;
+}
+
+.nav > li{
+    display: inline-block;
+    padding:0 25px 0 25px;
+}
+.nav > li > a{
+    text-decoration: none;
+    color:#ffffff;
+}
+
+.nav > li > a:hover{
+    color:#c1c1c1;
+}

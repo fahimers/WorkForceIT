@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <style>
+            .ferra{
+                background-image:url("res/b1.jpg");
+                 
+            }      
+        </style>
+        <title>Welcome to come top  </title>     
+           <link rel="stylesheet" type="text/css" href="style.css"></link>        
+    </h:head>
+    
+    <h:body styleClass="ferra">
+         <ul class="nav">
+              <input type="text" name="search" placeholder="Search.."> </input>
+          <li><a href="#">Log in</a></li>
+           <li><a href="#">Register</a></li>
+           <li><a href="#">About</a></li>
+        <h:form>
+             <h:panelGrid columns="2"> 
+         Language : 
+         <h:selectOneMenu value="#{userData.locale}" onchange="submit()"
+            valueChangeListener="#{userData.localeChanged}">
+            <f:selectItems value="#{userData.countries}" /> 
+         </h:selectOneMenu> 
+      </h:panelGrid> 
+        </h:form>
+         </ul>
+        <h1>Welcome </h1>     
+        <h:form>
+            <h3>You're logged in as Admin</h3>       
+        </h:form>             
+        <h:form>           
+            <p:dataTable id="table" var= "Users" value="#{acct.list}">
+            <p:column headerText="Accounts in Data base">
+                <h:outputText value="#{acct.list}" />
+             </p:column>           
+            </p:dataTable>
+            
+              <h:panelGrid>
+                    <p:panel header="Export Data">
+                        <h:commandLink>
+                        
+                            <p:graphicImage value="/res/pdficon.png"/>
+                            <p:dataExporter type ="pdf" target="table" fileName="Data"/>
+                        
+                        </h:commandLink>    
+                    </p:panel>
+                </h:panelGrid>
+        </h:form>       
+        <h:form>
+            <p>
+            <h:commandButton value="Log out" action="#{acct.logout()}"/>
+        </p>
+        </h:form>
+
+    </h:body>
+</html>
+

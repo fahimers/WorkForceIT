@@ -32,3 +32,9 @@ body{
 .nav > li > a:hover{
     color:#c1c1c1;
 }
+
+.ssnerror{
+    color: red;
+    display: none;
+}
+

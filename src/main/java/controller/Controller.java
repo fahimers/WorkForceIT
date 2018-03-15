@@ -1,5 +1,7 @@
 package controller;
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import model.Account;
 import model.accountInterface;
 
@@ -9,6 +11,10 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
+import javax.persistence.RollbackException;
+import static javax.swing.text.StyleConstants.Size;
+import javax.validation.constraints.Size;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -19,6 +25,7 @@ import org.mindrot.jbcrypt.BCrypt;
 @Stateless
 public class Controller {
 
+    @Size() 
     @PersistenceContext(unitName = "dataOne")
     private EntityManager em; 
     // Define the BCrypt workload to use when generating password hashes. 10-31 is a valid value.
@@ -53,13 +60,14 @@ public class Controller {
         }
         return null;       
     }
-    public String newAccount(String username, String password,String name,String surname, String ssn,String email) {
+    public String newAccount(String username, String password,String name,String surname, String ssn,String email)  {
+        
         accountInterface Account1 = em.find(Account.class, username);// letar efter  primary key i data bassen med entety manger
        /* accountInterface emailtest = em.getReference(Account.class, username);
         accountInterface account2 = em.find(Account.class, username);
         String test = emailtest.getEmail();
         */
-         List<Account> accounts = em.createQuery("from Account m", Account.class).getResultList();
+        // List<Account> accounts = em.createQuery("from Account m", Account.class).getResultList();
         if (Account1 != null) {
             //throw new EntityNotFoundException("Account already exist");
             return "Account already exist";
@@ -67,15 +75,17 @@ public class Controller {
         salt=BCrypt.gensalt(workload);
         String hased_password = BCrypt.hashpw(password, salt);
         
-        for(Account acc: accounts){
-            if(accounts.contains(email) )
-            {
-                return "Email already exist";
-            }
-        }           
+            
         long b =2;
+       // try{
         Account1 = new Account(username,hased_password,b, name, surname,ssn,email);
         em.persist(Account1); // persist till databasen 
+        //}
+      /* catch(RollbackException  e) 
+      { 
+            return "Email already exist" ; // Error message for integrity constraint violation
+      }
+        */
         return "Done";
     }
     public List<Account> getAccounts(){

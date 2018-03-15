@@ -8,15 +8,15 @@
     <h:head>
          <style>
             .ferra{
-                background-image:url("res/b1.jpg");
+                background-image:url("resources/b1.jpg");
             }
         
         </style>
         <title>Welcome</title>
-           <link rel="stylesheet" type="text/css" href="style.css"></link>
+           <link rel="stylesheet" type="text/css" href="resources/style.css"></link>
     </h:head>
     <h:body styleClass="ferra">      
-               <ul class="nav">
+        <ul class="nav">
         <input type="text" name="search" placeholder="Search.."> </input>
           <li><a href="#">Log in</a></li>
            <li><a href="#">Register</a></li>
@@ -70,7 +70,7 @@
                     <p:panel header="Export Data">
                         <h:commandLink>
                         
-                            <p:graphicImage value="/res/pdficon.png"/>
+                            <p:graphicImage value="/resources/pdficon.png"/>
                             <p:dataExporter type ="pdf" target="table" fileName="Data"/>
                         
                         </h:commandLink>    

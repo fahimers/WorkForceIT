@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" v="4.7" status="GENERATED" persistenceUnitName="DEFAULT_PU" sm="false" id="_15210742331371" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity abs="false" class="Role" v="true" xre="false" m="false" rootElement="_15210742331371" id="_15210742331422">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="name" id="_15210742331448">
+                <jpa:column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="ROLE" length="255"/>
+            </jpa:basic>
+            <jpa:one-to-many own="false" connected-entity-id="_15210742331423" connected-attribute-id="_152107423314517" v="true" name="accountCollection" id="_15210742331449"/>
+            <jpa:id attribute-type="Long" v="true" name="id" id="_15210742331447">
+                <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="ROLE"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="ROLE"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Account" v="true" xre="false" m="false" rootElement="_15210742331371" id="_15210742331423">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="email" id="_152107423314411">
+                <jpa:column name="EMAIL" unique="false" nullable="true" insertable="true" updatable="true" table="ACCOUNT" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="java.math.BigInteger" v="true" name="id" id="_152107423314412">
+                <jpa:column name="ID" unique="false" nullable="true" insertable="true" updatable="true" table="ACCOUNT"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="name" id="_152107423314413">
+                <jpa:column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="ACCOUNT" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="password" id="_152107423314414">
+                <jpa:column name="PASSWORD" unique="false" nullable="true" insertable="true" updatable="true" table="ACCOUNT" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="ssn" id="_152107423314415">
+                <jpa:column name="SSN" unique="false" nullable="true" insertable="true" updatable="true" table="ACCOUNT" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="surname" id="_152107423314416">
+                <jpa:column name="SURNAME" unique="false" nullable="true" insertable="true" updatable="true" table="ACCOUNT" length="255"/>
+            </jpa:basic>
+            <jpa:many-to-one connected-entity-id="_15210742331422" connected-attribute-id="_15210742331449" v="true" name="roleId" id="_152107423314517">
+                <jpa:join-column name="ROLE_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:one-to-many own="false" connected-entity-id="_15210742331424" connected-attribute-id="_152107423314523" v="true" name="availabilityCollection" id="_152107423314518"/>
+            <jpa:one-to-many own="false" connected-entity-id="_15210742331425" connected-attribute-id="_152107423314526" v="true" name="competenceprofileCollection" id="_152107423314519"/>
+            <jpa:id attribute-type="String" v="true" name="username" id="_152107423314410">
+                <jpa:column name="USERNAME" unique="false" nullable="false" insertable="true" updatable="true" table="ACCOUNT" length="255"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="ACCOUNT"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Availability" v="true" xre="false" m="false" rootElement="_15210742331371" id="_15210742331424">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="Integer" v="true" name="fromdate" id="_152107423314521">
+                <jpa:column name="FROMDATE" unique="false" nullable="true" insertable="true" updatable="true" table="AVAILABILITY"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="Integer" v="true" name="todate" id="_152107423314522">
+                <jpa:column name="TODATE" unique="false" nullable="true" insertable="true" updatable="true" table="AVAILABILITY"/>
+            </jpa:basic>
+            <jpa:many-to-one connected-entity-id="_15210742331423" connected-attribute-id="_152107423314518" v="true" name="personidUsername" id="_152107423314523">
+                <jpa:join-column name="PERSONID_USERNAME" rc="USERNAME" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="String" v="true" name="id" id="_152107423314520">
+                <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="AVAILABILITY" length="255"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="AVAILABILITY"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Competenceprofile" v="true" xre="false" m="false" rootElement="_15210742331371" id="_15210742331425">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="Integer" v="true" name="yearofexperience" id="_152107423314525">
+                <jpa:column name="YEAROFEXPERIENCE" unique="false" nullable="true" insertable="true" updatable="true" table="COMPETENCEPROFILE"/>
+            </jpa:basic>
+            <jpa:many-to-one connected-entity-id="_15210742331423" connected-attribute-id="_152107423314519" v="true" name="personUsername" id="_152107423314526">
+                <jpa:join-column name="PERSON_USERNAME" rc="USERNAME" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one connected-entity-id="_15210742331426" connected-attribute-id="_152107423314530" v="true" name="competenceidCompetenceid" id="_152107423314527">
+                <jpa:join-column name="COMPETENCEID_COMPETENCEID" rc="COMPETENCEID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="Long" v="true" name="competenceProfileId" id="_152107423314524">
+                <jpa:column name="COMPETENCE_PROFILE_ID" unique="false" nullable="false" insertable="true" updatable="true" table="COMPETENCEPROFILE"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="COMPETENCEPROFILE"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Competence" v="true" xre="false" m="false" rootElement="_15210742331371" id="_15210742331426">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="name" id="_152107423314529">
+                <jpa:column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="COMPETENCE" length="255"/>
+            </jpa:basic>
+            <jpa:one-to-many own="false" connected-entity-id="_15210742331425" connected-attribute-id="_152107423314527" v="true" name="competenceprofileCollection" id="_152107423314530"/>
+            <jpa:id attribute-type="Long" v="true" name="competenceid" id="_152107423314528">
+                <jpa:column name="COMPETENCEID" unique="false" nullable="false" insertable="true" updatable="true" table="COMPETENCE"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="COMPETENCE"/>
+    </jpa:entity>
+    <jpa:snp loc="BEFORE_PACKAGE" e="true">/**
+ * This file was generated by the Jeddict
+ */</jpa:snp>
+</jpa:entity-mappings>

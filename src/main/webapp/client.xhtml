@@ -5,16 +5,15 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
       
-    <h:head>
-         <style>
-            .ferra{
+      <h:head>
+          <style>
+              .ferra{
                 background-image:url("resources/b1.jpg");
-            }
-        
-        </style>
-        <title>Welcome</title>
-           <link rel="stylesheet" type="text/css" href="resources/style.css"></link>
-    </h:head>
+              }
+          </style>
+          <title>Welcome</title>
+          <link rel="stylesheet" type="text/css" href="resources/style.css"></link> <!-- CSS som jag valt att använda -->
+      </h:head>
     <h:body styleClass="ferra">      
         <ul class="nav">
         <input type="text" name="search" placeholder="Search.."> </input>
@@ -26,26 +25,23 @@
          Language : 
          <h:selectOneMenu value="#{userData.locale}" onchange="submit()"
             valueChangeListener="#{userData.localeChanged}">
-        
+             <f:selectItems value="#{userData.countries}" /> 
          </h:selectOneMenu> 
       </h:panelGrid> 
         </h:form>
-         </ul>
-<h1>Welcome </h1>
-            
-        <h:form>
-            <h3>You're logged in as: </h3>
-            <p>
+        </ul>
+            <h:form>
+                <h1><h:outputText value="#{msg['welcome']}" /></h1>
+                <h3><h:outputText value="#{msg['du']}"/> </h3>
+                <p>
                 <h:outputLabel for="currHolder" rendered="#{acct.account != null}"  value="Account: "/>
                 <h:outputText id="currHolder" value="#{acct.account.username }" />
                 <h:outputText value="&#160;" />
                 <h:outputText id="currHolder3" value="#{acct.account.email }" />
-                
-            </p> 
+                </p>
             </h:form>
-
-    <h:form>  
-     <p:dataTable id="table" var= "car" value="#{acct.account.username}">
+     <h:form>  
+     <p:dataTable id="table" var= "usename1" value="#{acct.account.username}">
     <p:column headerText="User">
         <h:outputText value="#{acct.account.username}" />
     </p:column>
@@ -65,26 +61,20 @@
         <h:outputText value="#{acct.account.name}" />
     </p:column>        
     </p:dataTable>
-        
-                <h:panelGrid>
-                    <p:panel header="Export Data">
-                        <h:commandLink>
-                        
-                            <p:graphicImage value="/resources/pdficon.png"/>
-                            <p:dataExporter type ="pdf" target="table" fileName="Data"/>
-                        
-                        </h:commandLink>    
-                    </p:panel>
-                </h:panelGrid>
- 
+         <h:panelGrid>
+             <p:panel header="Export Data">
+                 <h:commandLink>
+                     <p:graphicImage value="/resources/pdficon.png"/>
+                     <p:dataExporter type ="pdf" target="table" fileName="Data"/>
+                 </h:commandLink>    
+             </p:panel>
+         </h:panelGrid>
         </h:form>
         <h:form>
-            <p>
+         <p>
             <h:commandButton value="Log out" action="#{acct.logout()}"/>
         </p>
         </h:form>
-
-    </h:body>
-    
+    </h:body>  
 </html>
 

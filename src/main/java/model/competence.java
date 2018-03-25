@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author fahimer
+ * @author Elias
  */
 @Entity
 public class competence implements Serializable {

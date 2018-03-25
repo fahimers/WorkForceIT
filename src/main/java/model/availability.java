@@ -13,7 +13,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author fahimer
+ * @author Elias
  */
 @Entity
 public class availability implements Serializable {

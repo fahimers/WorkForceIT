@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
+
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -13,20 +9,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PersistenceException;
-import model.UniqueEmail;
+//import model.UniqueEmail;
 
-/*Man använder sig av java beans eftersom det kan vara mer användarvänligt när en non-java web designer jobbar med jsp
- om man har gjort en tillräkligt bra desgine på applicationen så kán man lätt separare hardcore java codeningen från viewn logiken  
- till det som finns i busniness logicen.
-*/
-
+/**
+ * Entity class representerar tabler i databasen
+ * persistent instance varibale måst deklarars som privat och kan bara nåns direkt av methoderna i enitity classen
+ * 
+ * @author Elias
+ */
 @Entity
 public class Account implements Serializable, accountInterface {    //serliazble eftersom det tillåter application att säkert spara store och restore the state oberonde av vm eller andra platformar.
     private static final long serialVersionUID = 1L;
+    //primery key
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) 
-    private String username;
+    @GeneratedValue(strategy = GenerationType.AUTO) // automtiskt allicated av objectDB
+    private String username; 
    
     @Column(unique=true)     
     //@UniqueEmail( message= "This email already exist")       
@@ -50,10 +47,20 @@ public class Account implements Serializable, accountInterface {    //serliazble
     private String surname;
     private String ssn;
        
-    //public default kontruktor utan argument för att vara en bean tillåter lätt intiering och editing av framework.
+    //public default kontruktor utan argument för att vara entity tillåter lätt intiering och editing av framework.
     public Account(){     
         
     }  
+    /**
+     * Konstruktor som tar emot dessa parametrar.
+     * @param username
+     * @param password
+     * @param id
+     * @param name
+     * @param surname
+     * @param ssn
+     * @param email 
+     */
     public Account(String username, String password, Long id, String name, String surname, String ssn, String email){
         this.username = username;
         this.password = password;
@@ -64,7 +71,6 @@ public class Account implements Serializable, accountInterface {    //serliazble
         this.ssn = ssn;
         
         this.email = email;
-
     }
     // get och set methoder som följer standard nameing convention tillåter så att man kan få en updatering om beans states i frameworken
     @Override

@@ -3,19 +3,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <style>
             .ferra{
                 background-image:url("resources/b1.jpg");
-                 
             }      
         </style>
         <title>Welcome to come top  </title>     
-           <link rel="stylesheet" type="text/css" href="resources/style.css"></link>        
+             <link rel="stylesheet" type="text/css" href="resources/style.css"></link> <!-- CSS som jag valt att använda --> 
     </h:head>
     
-    <h:body styleClass="ferra">
+    <h:body>
          <ul class="nav">
               <input type="text" name="search" placeholder="Search.."> </input>
           <li><a href="#">Log in</a></li>
@@ -31,9 +30,9 @@
       </h:panelGrid> 
         </h:form>
          </ul>
-        <h1>Welcome </h1>     
         <h:form>
-            <h3>You're logged in as Admin</h3>       
+            <h1><h:outputText value="#{msg['welcome']}" /></h1>
+            <h3><h:outputText value="#{msg['du']} Adminass" /></h3>       
         </h:form>             
         <h:form>           
             <p:dataTable id="table" var= "Users" value="#{acct.list}">
@@ -41,24 +40,20 @@
                 <h:outputText value="#{acct.list}" />
              </p:column>           
             </p:dataTable>
-            
-              <h:panelGrid>
-                    <p:panel header="Export Data">
-                        <h:commandLink>
-                        
-                            <p:graphicImage value="/resources/pdficon.png"/>
-                            <p:dataExporter type ="pdf" target="table" fileName="Data"/>
-                        
+            <h:panelGrid>
+                <p:panel header="Export Data">
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/pdficon.png"/>
+                        <p:dataExporter type ="pdf" target="table" fileName="Data"/>
                         </h:commandLink>    
-                    </p:panel>
-                </h:panelGrid>
+                </p:panel>
+            </h:panelGrid>
         </h:form>       
         <h:form>
             <p>
             <h:commandButton value="Log out" action="#{acct.logout()}"/>
-        </p>
+            </p>
         </h:form>
-
     </h:body>
 </html>
 

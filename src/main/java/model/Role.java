@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 import java.io.Serializable;
@@ -13,7 +9,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author fera
+ * @author elias
  */
 @Entity
 public class Role implements Serializable {
@@ -21,12 +17,19 @@ public class Role implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
     
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }

@@ -1,5 +1,6 @@
 
 package view;
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;// No doublicates är tillåtna 
@@ -10,7 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
 
-// är mangaged av java server faces implementation och är tillgänglig under hela session,  kommer lässas vid startup om inte man har satt metadata-complete true i faces-config 
+// är mangaged av java server faces implementation och är tillgänglig under hela session,  kommer lässas vid startup  
 
 /**
  * En managed bean class som används för internationalization
@@ -18,7 +19,9 @@ import javax.faces.event.ValueChangeEvent;
  */
 @ManagedBean(name = "userData")// beans för internationalization 
 @SessionScoped // kommer persist genom flera HTTP request i web applicationen.
-public class ChangeLang  {
+public class ChangeLang  implements Serializable{
+    private static final long serialVersionUID = 16244344405L;
+    
    
     private String locale;
     private static Map<String,Object> countries;

@@ -16,11 +16,11 @@ import org.mindrot.jbcrypt.BCrypt;
  * @author Elias
  */
 
-@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW) //REQUIRES_NEW kommer alltid skapa en ny transaction 
 @Stateless
 public class Controller {
 
-    @Size() 
+   
     @PersistenceContext(unitName = "dataOne")
     private EntityManager em; 
     // Definar en bycript workload 
@@ -53,7 +53,7 @@ public class Controller {
      */
     
     
-    public String Login(String username, String password) { // tar in två strings
+    public String loginC(String username, String password) { // tar in två strings
         boolean password_verified = false;
         accountInterface account = em.find(Account.class, username);
         if(account == null) {

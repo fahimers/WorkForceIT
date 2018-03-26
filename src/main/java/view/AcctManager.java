@@ -16,14 +16,15 @@ import javax.inject.Named;
  * @author Elias
  */
 
-@Named("acct") //satt detta som acct med hjälp ava javax
-@ConversationScoped
+@Named("acct") 
+@ConversationScoped //spara
 public class AcctManager implements Serializable {
 
     private static final long serialVersionUID = 16247164405L;
-    @EJB
-
+    
+    @EJB // inject controller om inte har den blir null pointer exeption
     private Controller controller;
+    
     private String username;
     private String password;
     private Exception transactionFailure;
@@ -92,7 +93,7 @@ public class AcctManager implements Serializable {
             succes = false;
             logout = false;
             account = null;
-            result = controller.Login(username, password); // anropar metoden login i controllern
+            result = controller.loginC(username, password); // anropar metoden login i controllern
             if (result.equals("Done")) {
                 account = controller.getAccount(username);
             }

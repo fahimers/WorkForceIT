@@ -55,19 +55,19 @@
             <h3><h:outputText value="#{msg['newAccount']}"/></h3>
                 <h:panelGrid columns="1">
                   <h:outputText value="#{msg['username']}" />
-                  <h:inputText value="#{acct.username}" id ="usernames"></h:inputText>
-                  <h:message for="username" errorStyle="color:red; display:block"/>     
+                  <h:inputText value="#{acct.username}" id ="usernames" required="true" ></h:inputText>
+                    
                   
                 <h:outputText value="#{msg['password']}" />
                 <h:inputSecret id ="password" value="#{acct.password}"></h:inputSecret>
                 <h:message for="password" errorStyle="color:red; display:block"/> 
                  <h:outputText value="#{msg['name']}" />
                 <h:inputText id ="name" value="#{acct.name}"></h:inputText>
-                  <h:message for="name" errorStyle="color:red; display:block"/> 
+               
                   
                <h:outputText value="#{msg['surname']}" />
                <h:inputText id ="surname" value="#{acct.surname}"></h:inputText>
-               <h:message for="surname" errorStyle="color:red; display:block"/> 
+           
                
                    <h:outputText value="#{msg['ssn']}" />
                 <h:inputText id ="ssn" value="#{acct.ssn}" ></h:inputText>
@@ -76,7 +76,7 @@
                    
              <h:outputText value="#{msg['email']}" />
                 <h:inputText id ="email" value="#{acct.email}"></h:inputText>
-               <h:message for="email" errorStyle="color:red; display:block"/> 
+           
                </h:panelGrid>
             <p>
                 <h:commandButton value ="new Account" id= "submit-button" action ="#{acct.newAccount()}"/>
@@ -104,11 +104,9 @@
                    $('#log-form').validate({
                        rules:{ 
                            usernameL:{
-                                required: true,
                                 minlength: 3
                             },
                             passwordL:{
-                                required: true,
                                 minlength: 3
                             }
                         }
